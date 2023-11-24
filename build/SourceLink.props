@@ -26,7 +26,9 @@
   </ItemGroup>
 
   <!-- Workaround for https://github.com/dotnet/sdk/issues/11105 -->
+  <!-- When custom nuget dir is specified -->
+  <!-- https://github.com/PrismLibrary/Prism/issues/2369 -->
   <ItemGroup>
-    <SourceRoot Include="$(NuGetPackageRoot)" Condition="'$(NuGetPackageRoot)' != ''" />
+    <SourceRoot Include="$([MSBuild]::EnsureTrailingSlash($(NuGetPackageRoot)))" Condition="'$(NuGetPackageRoot)' != ''" />
   </ItemGroup>
 </Project>
